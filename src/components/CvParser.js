@@ -1,18 +1,17 @@
 import React from 'react'
+import CvPT from './CvPT'
 
 const CvParser = () => {
   return (
-    <div>
-        <h1>Upload CV</h1>
-
+    <div className='cvInputs'>
+      <div className='cv'>
         <div>
+          <h1>Upload CV</h1>
+        </div>
+        <div className='pdfParser'>
             <h2>Drop PDF here or browse </h2>
-            <h3>PDF or plain text</h3>
         </div>
-
-        <div>
-            <h3> or paste text </h3>
-        </div>
+      </div>
     </div>
   )
 }
