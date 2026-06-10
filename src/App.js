@@ -10,15 +10,34 @@ function App() {
 
   const [cvText, setCvText] = useState('');
   const [jobDesc, setJobDesc] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [results, setResults] = useState(null);
 
   console.log('CV:', cvText);
   console.log('JD:', jobDesc);
 
-    function handleSubmit() {
-    if (!cvText) { alert('Please add your CV'); return; }
-    if (!jobDesc) { alert('Please add a job description'); return; }
-    console.log('ready to send to backend');
+  async function handleSubmit() {
+  if (!cvText) { alert('Please add your CV'); return; }
+  if (!jobDesc) { alert('Please add a job description'); return; }
+
+  setLoading(true);
+  try {
+    const response = await fetch('http://localhost:8000/analyse', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        cv_text: cvText,
+        job_description: jobDesc
+      })
+    });
+    const data = await response.json();
+    setResults(data);
+  } catch (err) {
+    alert('Something went wrong — is the backend running?');
+  } finally {
+    setLoading(false);
   }
+}
 
   return (
     <div className="App">
