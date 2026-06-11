@@ -1,11 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-const CvPT = () => {
+const CvPT = ({ onTextExtracted }) => {
   return (
     <div>
-        <textarea  placeholder="Paste your CV here..." rows={9} cols={40} />
+      <textarea
+        placeholder="Paste your CV here..."
+        onChange={e => onTextExtracted(e.target.value)}
+      />
     </div>
-  )
+  );
 }
 
-export default CvPT
+export default CvPT;

@@ -5,6 +5,7 @@ import Header from './components/Header.js';
 import CvParser from './components/CvParser.js';
 import JobDesc from './components/JobDesc.js';
 import CvPT from './components/CvPT.js';
+import Results from './components/Results';
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
   const [jobDesc, setJobDesc] = useState('');
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState(null);
+  const [activeTab, setActiveTab] = useState('feedback');
 
   console.log('CV:', cvText);
   console.log('JD:', jobDesc);
@@ -40,23 +42,33 @@ function App() {
 }
 
   return (
-    <div className="App">
-      <Header/>
-      <div className='main-grid'>
-        <div className='card'>
-          <CvParser onTextExtracted={setCvText}/>
-          <CvPT onTextExtracted={setCvText}/>
-        </div>
-        <div className='card'>
-          <JobDesc onJobDesc={setJobDesc}/>
-        </div>
+      <div className="App">
+    <Header/>
+    <div className='main-grid'>
+      <div className='card'>
+        <CvParser onTextExtracted={setCvText}/>
+        <CvPT onTextExtracted={setCvText}/>
       </div>
-      <div className="submit-row">
-        <button className="btn-primary" onClick={handleSubmit}>
-          Analyse & generate →
-        </button>
+      <div className='card'>
+        <JobDesc onJobDesc={setJobDesc}/>
       </div>
     </div>
+
+    <div className="submit-row">
+      <button className="btn-primary" onClick={handleSubmit}>
+        Analyse & generate →
+      </button>
+    </div>
+
+    {loading && (
+      <div className="loading">
+        <p>Analysing your CV...</p>
+      </div>
+    )}
+
+    <Results results={results} />
+
+  </div>
   );
 }
 
