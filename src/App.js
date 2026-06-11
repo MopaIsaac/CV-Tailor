@@ -24,7 +24,7 @@ function App() {
 
   setLoading(true);
   try {
-    const response = await fetch('http://localhost:8000/analyse', {
+    const response = await fetch('https://cv-tailor-lkbz.onrender.com/analyse', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
