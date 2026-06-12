@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { useState } from 'react';
 import './App.css';
 import Header from './components/Header.js';
@@ -13,7 +12,7 @@ function App() {
   const [jobDesc, setJobDesc] = useState('');
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState(null);
-  const [activeTab, setActiveTab] = useState('feedback');
+
 
   console.log('CV:', cvText);
   console.log('JD:', jobDesc);
